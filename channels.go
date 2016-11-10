@@ -7,7 +7,7 @@ func sum(a []int, c chan int) {
 	for _, v := range a {
 		sum += v
 	}
-	c <- sum // 将和送入 c
+	c <- sum
 }
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 	c := make(chan int)
 	go sum(a[:len(a)/2], c)
 	go sum(a[len(a)/2:], c)
-	x, y := <-c, <-c // 从 c 中获取
+	x, y := <-c, <-c
 
 	fmt.Println(x, y, x+y)
 }
